@@ -1,0 +1,67 @@
+[project]
+name = "sample"
+version = "2.0.0"
+description = "A python starterkit for fastapi and mongo projects."
+authors = [{ name = "sample", email = "recursivezero@outlook.com" }]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+keywords = ["python", "fastapi", "mongo", "template"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Boilerplate :: Poetry Flask",
+]
+
+[tool.poetry.dependencies]
+fastapi = ">=0.121.1,<0.122.0"
+python-box = ">=7.3.2,<8.0.0"
+uvicorn = ">=0.40.0,<0.41.0"
+python-dotenv = ">=1.2.1,<2.0.0"
+dotenv = ">=0.9.9,<0.10.0"
+jinja2 = ">=3.1.0,<4.0.0"
+# pymongo is optional 
+pymongo = { version = ">=4.15.5,<5.0.0", optional = true }
+
+[tool.poetry.extras]
+mongo = ["pymongo"]
+
+[tool.poetry]
+packages = [
+  { include = "sample", from = "src" },
+  { include = "assets", from = "." },
+]
+include = [{ path = "templates/**/*", format = ["sdist", "wheel"] }]
+exclude = ["src/**/__pycache__", "tests", "docs", "*.log"]
+
+[project.scripts]
+sample = "sample.cli:cli"
+lint = "sample.utils.lint:main"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.10.0"
+flake8 = "^7.1.1"
+mypy = "^1.14.1"
+pip-audit = "^2.9.0"
+pipreqs = "0.5.0"
+ruff = "0.5.3"
+twine = "^6.2.0"
+vulture = "^2.3"
+
+[tool.flake8]
+max_line_length = 190
+
+#[tool.poetry.requires-plugins]
+#poetry-plugin-export = "^1.9"
+
+[tool.poetry-auto-export]
+output = "requirements.txt"
+without_hashes = true
+without = ["dev"]
+
+[tool.poetry-audit]
+ignore = []
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
