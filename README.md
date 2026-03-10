@@ -53,6 +53,8 @@ poetry install
 
 ```bash
 poetry run sample dev
+# with custom port
+poetry run sample dev --port 8501
 ```
 
 Access: <http://localhost:8501>
@@ -63,6 +65,8 @@ Access: <http://localhost:8501>
 poetry run sample api
 # OR
 python src/api/fast_api.py
+# with custom port
+poetry run sample dev --port 5000
 ```
 
 Access: <http://127.0.0.1:5000>
