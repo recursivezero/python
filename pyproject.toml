@@ -1,6 +1,6 @@
 [project]
 name = "python-starterkit"
-version = "1.0.0"
+version = "1.0.1"
 description = "A python starterkit for fastapi and mongo projects."
 authors = [{ name = "admin", email = "recursivezero@outlook.com" }]
 license = "MIT"
