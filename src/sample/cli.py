@@ -13,17 +13,24 @@ def cli(ctx, version):
         ctx.exit()
 
 
-@cli.command()
-def dev():
-    """Run the Sample  app."""
+@cli.command(help="Port to run the Sample app on.")
+@click.option(
+    "--port", default=8501, show_default=True, help="Port to run the Sample app on."
+)
+def dev(port: int):
     from sample.__main__ import main
 
-    main()
+    main(port)
 
 
-@cli.command()
-def api():
-    """Run the Sample FastAPI backend."""
+@cli.command(help="Run the Sample FastAPI backend.")
+@click.option(
+    "--port",
+    default=5000,
+    show_default=True,
+    help="Port to run the FastAPI backend on.",
+)
+def api(port: int):
     from sample.api.routes import start
 
-    start()
+    start(port)

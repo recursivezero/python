@@ -31,7 +31,6 @@ def safe_get(env_key: str, default) -> str:
 
 
 API_PREFIX = safe_get("API_PREFIX", DEFAULT_API_PREFIX)
-PORT = int(safe_get("PORT", DEFAULT_PORT))
 
 
 def get_mongo_config():
