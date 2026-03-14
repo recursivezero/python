@@ -9,7 +9,6 @@ from fastapi.templating import Jinja2Templates
 from sample.api.routes import greet_router
 from sample.api.web_page import web_router
 from sample.db.connection import connect_db
-from sample.utils.constants import PORT
 
 
 @asynccontextmanager
@@ -44,7 +43,7 @@ app.include_router(web_router)
 app.include_router(greet_router)
 
 
-def start():
+def start(port: int = 5000):
     import uvicorn
 
-    uvicorn.run("sample.api.main:app", host="127.0.0.1", port=PORT, reload=True)
+    uvicorn.run("sample.api.main:app", host="127.0.0.1", port=port, reload=True)

@@ -7,6 +7,7 @@ from sample.utils.config import load_env
 load_env()
 # These should be in environment variables or .env file.
 DEFAULT_PORT = 8005
+
 DEFAULT_API_PREFIX = "/api/v1"
 DEFAULT_MONGODB_URI = (
     "mongodb://127.0.0.1:27017/?retryWrites=true&w=majority&appName=Sample"
@@ -30,8 +31,10 @@ def safe_get(env_key: str, default) -> str:
     return value
 
 
+PORT = safe_get("PORT", DEFAULT_PORT)
+PORT_API = safe_get("PORT_API", int(PORT) + 1)
+
 API_PREFIX = safe_get("API_PREFIX", DEFAULT_API_PREFIX)
-PORT = int(safe_get("PORT", DEFAULT_PORT))
 
 
 def get_mongo_config():

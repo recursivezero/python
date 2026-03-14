@@ -1,9 +1,10 @@
 from fastapi import APIRouter, FastAPI, HTTPException, Request
 from pydantic import BaseModel
-from sample.utils.constants import API_PREFIX, GREETING, PORT
-from sample.utils.helper import normalize_name
 from starlette.responses import HTMLResponse, JSONResponse
+
 from sample import __version__
+from sample.utils.constants import API_PREFIX, GREETING
+from sample.utils.helper import normalize_name
 
 app = FastAPI(
     title="Sample API",
@@ -98,7 +99,7 @@ app.include_router(api_router)
 app.include_router(greet_router)
 
 
-def start():
+def start(port: int = 5000):
     import uvicorn
 
-    uvicorn.run("sample.api.routes:app", host="127.0.0.1", port=PORT, reload=True)
+    uvicorn.run("sample.api.routes:app", host="127.0.0.1", port=port, reload=True)
